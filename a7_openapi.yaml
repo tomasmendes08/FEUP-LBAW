@@ -1,0 +1,1615 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: Discussly Web API
+  description: Web Resources Specification (A7) for Discussly
+servers:
+  - url: 'http://lbaw2141-piu.lbaw-prod.fe.up.pt/'
+    description: 'Production server'
+externalDocs:
+  description: Find more info here.
+  url: https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/wikis/eap
+tags:
+  - name: 'M01: Authentication and Individual Profile'
+  - name: 'M02: Posts and Spaces'
+  - name: 'M03: User Administration'
+  - name: 'M04: Static Pages'
+  - name: 'M05: Search'
+paths:
+  /login:
+    post:
+      operationId: R101
+      summary: 'R101: Login Action'
+      description: 'Processes the login form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        '302':
+          description: 'Redirect after processing the login credentials'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to user profile'
+                  value: '/users/{id}'
+                302Error:
+                  description: 'Failed authentication. Redirect to login form'
+                  value: /login
+        '400':
+          description: 'Bad Request'
+  /logout:
+    get:
+      operationId: R102
+      summary: 'R102: Logout Action'
+      description: 'Logout the current authenticated used. Access: USR, ADM'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '302':
+          description: Redirect after processing logout.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Successful logout. Redirect to home page.
+                  value: /home
+        '400':
+          description: 'Bad Request'
+  /register:
+    get:
+      operationId: R103
+      summary: 'R103: Register Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show [UI05](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/signup_combined.png)'
+        '400':
+          description: 'Bad Request'
+    post:
+      operationId: R104
+      summary: 'R104: Register Action'
+      description: 'Processes the new user registration form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                confirm_password:
+                  type: string
+                description:
+                  type: string
+                favourite_science:
+                  type: boolean
+                favourite_technology:
+                  type: boolean
+                favourite_engineering:
+                  type: boolean
+                favourite_maths:
+                  type: boolean
+              required:
+                - username
+                - email
+                - password
+                - confirm_password
+                - favourite_science
+                - favourite_techonolgy
+                - favourite_engineering
+                - favourite_maths
+      responses:
+        '302':
+          description: Redirect after processing the new user information.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Successful authentication. Redirect to user profile.
+                  value: '/users/{id}'
+                302Failure:
+                  description: Failed authentication. Redirect to login form.
+                  value: /login
+        '400':
+          description: 'Bad Request'
+  /users/{id}:
+    get:
+      operationId: R105
+      summary: 'R105: View user profile'
+      description: 'Show the individual user profile. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Show [UI07](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/profile_combined.png)'
+        '400':
+          description: 'Bad Request'
+  /users/{id}/edit:
+    get:
+      operationId: R106
+      summary: 'R106: Edit user profile'
+      description: 'Page that allows a user to update his information. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: 'Provides the id for the user'
+      responses:
+        '200':
+          description: 'Ok. Show [UI08](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/edit_profile_combined.png)'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+    put:
+      operationId: R107
+      summary: 'R107: Edit user profile'
+      description: 'Show a form for editing the individual user profile. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+                city:
+                  type: string
+                phone_number:
+                  type: integer
+                birthday:
+                  type: string
+                description:
+                  type: string
+                password:
+                  type: string
+                new_password:
+                  type: string
+                favourite_science:
+                  type: boolean
+                favourite_technology:
+                  type: boolean
+                favourite_engineering:
+                  type: boolean
+                favourite_maths:
+                  type: boolean
+              required:
+                - username
+                - email
+                - password
+                - favourite_science
+                - favourite_techonolgy
+                - favourite_engineering
+                - favourite_maths
+      responses:
+        '302':
+          description: Redirect after processing the updated user information.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Edit successfully. Redirect to user profile.
+                  value: '/users/{id}'
+                302Failure:
+                  description: Failed edit. Redirect to edit form.
+                  value: '/users/{id}/edit'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+  /users/{id}/edit/delete:
+    delete:
+      operationId: R108
+      summary: 'R108: Delete Account Action'
+      description: 'Delete the current authenticated used. Access: USR, ADM'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '302':
+          description: Redirect after processing deletion.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: User successfully deleted. Redirect to login form.
+                  value: /homepage
+                302Failure:
+                  description: Failed user deletion. Redirect to profile page.
+                  value: '/users/{id}'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+  /api/users/{id}/questions:
+    get:
+      operationId: R109
+      summary: 'R109: Users Questions'
+      description: 'Shows users questions. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: 'Specifies the id of the user'
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Shows UI'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    body:
+                      type: string
+                    votes:
+                      type: integer
+        '400':
+          description: 'Bad Request'
+  /api/users/{id}/answers:
+    get:
+      operationId: R110
+      summary: 'R110: Users Answers'
+      description: 'Shows users answers. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: 'Specifies the id of the user'
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Shows UI'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+                    votes:
+                      type: integer
+        '400':
+          description: 'Bad Request'
+  /api/users/{id}/comments:
+    get:
+      operationId: R111
+      summary: 'R111: Users Comments'
+      description: 'Shows users'' comments. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: 'Specifies the id of the user'
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Shows UI'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+        '400':
+          description: 'Bad Request'
+  /api/users/{id}/read_more/questions:
+    get:
+      operationId: R112
+      summary: 'R112: Show more questions from the user'
+      description: 'Show more questions from the user. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the id of the user'
+      responses:
+        '200':
+          description: 'Ok. Show UI'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    body:
+                      type: string
+                    space:
+                      type: string
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Questions not found'
+  /api/users/{id}/read_more/answers:
+    get:
+      operationId: R113
+      summary: 'R113: Show more answers from the user'
+      description: 'Show more answers from the user. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the id of the user'
+      responses:
+        '200':
+          description: 'Ok. Show UI'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Answers not found'
+  /api/users/{id}/read_more/comments:
+    get:
+      operationId: R114
+      summary: 'R114: Show more comments from the user'
+      description: 'Show more comments from the user. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the id of the user'
+      responses:
+        '200':
+          description: 'Ok. Show UI'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    body:
+                      type: string
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Comments not found'
+  /users/{id}/manage_spaces:
+    get:
+      operationId: R115
+      summary: 'R115: Manage Spaces user follows'
+      description: 'Provide form with spaces user follows. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Show !!no choose space ui, its a modal!!'
+    post:
+      operationId: R116
+      summary: 'R116: Manage Spaces Action'
+      description: 'Processes the manage space form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                favourite_science:
+                  type: boolean
+                favourite_technology:
+                  type: boolean
+                favourite_engineering:
+                  type: boolean
+                favourite_maths:
+                  type: boolean
+              required:
+                - favourite_science
+                - favourite_techonolgy
+                - favourite_engineering
+                - favourite_maths
+      responses:
+        '302':
+          description: Redirect after processing the manage spaces form.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Manage spaces successful. Redirect to user profile.
+                  value: '/users/{id}'
+                302Error:
+                  description: Manage spaces successful. edirect to manage spaces form.
+                  value: '/users/{id}/manage_spaces'
+        '400':
+          description: 'Bad Request'
+  /{space_name}:
+    get:
+      operationId: R201
+      summary: 'R201: Show a space page'
+      description: 'Show a space page and some of its posts. Access:PUB'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: space_name
+          schema:
+            type: string
+          required: true
+          description: 'Specifies the space name'
+      responses:
+        '200':
+          description: 'Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/space_combined.png)'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Space not found'
+  /api/{space_name}/read_more:
+    get:
+      operationId: R202
+      summary: 'R202: Show more questions from the space'
+      description: 'Show more questions from the space. Access:PUB'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: space_name
+          schema:
+            type: string
+          required: true
+          description: 'Specifies the space name'
+      responses:
+        '200':
+          description: 'Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/space_combined.png)'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    body:
+                      type: string
+                    votes:
+                      type: integer
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Space not found'
+  /api/{space_name}/recent:
+    get:
+      operationId: R203
+      summary: 'R203: Sort questions shown by recency'
+      description: 'Show the most recent questions. Access:PUB'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: space_name
+          schema:
+            type: string
+          required: true
+          description: 'Specifies the space name'
+      responses:
+        '200':
+          description: 'Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/space_combined.png)'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    body:
+                      type: string
+                    votes:
+                      type: integer
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Space not found'
+  /api/{space_name}/popular:
+    get:
+      operationId: R204
+      summary: 'R204: Sort questions shown by most popular'
+      description: 'Show the most popular questions. Access:PUB'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: space_name
+          schema:
+            type: string
+          required: true
+          description: 'Specifies the space name'
+      responses:
+        '200':
+          description: 'Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/space_combined.png)'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    body:
+                      type: string
+                    votes:
+                      type: integer
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Space not found'
+  /api/{space_name}/upvotes:
+    get:
+      operationId: R205
+      summary: 'R205: Sort questions shown by most upvotes'
+      description: 'Show the most upvoted questions. Access:PUB'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: space_name
+          schema:
+            type: string
+          required: true
+          description: 'Specifies the space name'
+      responses:
+        '200':
+          description: 'Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/space_combined.png)'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    body:
+                      type: string
+                    votes:
+                      type: integer
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Space not found'
+  /api/{space_name}/follow:
+    post:
+      operationId: R206
+      summary: 'R206: Follow a space'
+      description: 'Allows a user to follow a space. Access: USR'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: space_name
+          schema:
+            type: string
+          required: true
+          description: 'Specifies the name of the space to be followed'
+      responses:
+        '200':
+          description: 'Ok. Show [UI09](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/space_combined.png)'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Space not found'
+  /add_question:
+    get:
+      operationId: R207
+      summary: 'R207: Shows add question page'
+      description: 'Allows user to access add a question page. Access: USR'
+      tags:
+        - 'M02: Posts and Spaces'
+      responses:
+        '200':
+          description: 'Ok. Show [UI12](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/add_question_combined.png)'
+        '302':
+          description: 'Redirect visitor'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Redirect to login form'
+                  value: /login
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+    post:
+      operationId: R208
+      summary: 'R208: Adds a new question'
+      description: 'Allows a user to add a question. Access: USR'
+      tags:
+        - 'M02: Posts and Spaces'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title: 
+                  type: string
+                body: 
+                  type: string
+                space: 
+                  type: string
+      responses:
+        '302':
+          description: Redirect visitor.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Redirect to login form.
+                  value: /login
+        '400':
+          description: 'Bad Request'
+  /question/{question_id}:
+    get:
+      operationId: R209
+      summary: 'R209: Shows a question page'
+      description: 'Shows a question page and answers/comments. Access: PUB'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: question_id
+          schema:
+            type: integer
+          description: 'Specifies the id of the question to be displayed'
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Show [UI10](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/question_combined.png)'
+        '400':
+          description: 'Bad Request'
+
+  /question/{question_id}/report:
+    post:
+      operationId: R210
+      summary: 'R210: Report a question'
+      description: 'Allows a user to report a question. Access: USR'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: question_id
+          schema:
+            type: integer
+          description: 'Specifies the id of the question to be reported'
+          required: true
+      responses:
+        '200':
+          description: 'Report successfully sent'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: Page not found.
+  /api/question/{question_id}/vote:
+    post:
+      operationId: R211
+      summary: 'R211: Rate a question'
+      description: Allows a user to rate a certain question. Access USR
+      parameters:
+        - in: path
+          name: question_id
+          schema:
+            type: integer
+          description: 'Specifies the id of the question to be rated'
+          required: true
+      tags:
+        - 'M02: Posts and Spaces'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                question_id:
+                  type: integer
+                vote:
+                  type: boolean
+                  enum: [true,false]
+      responses:
+        '200':
+          description: 'Question successfully rated'
+        '302':
+          description: 'Redirect visitor'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Redirect to login form'
+                  value: /login
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: Page not found.
+  /edit_question/{question_id}:
+    get:
+      operationId: R212
+      summary: 'R212: Edit question'
+      description: 'Page that allows a user to update his question. Access: OWN'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: question_id
+          schema:
+            type: integer
+          required: true
+          description: 'Provide the id for the question'
+      responses:
+        '200':
+          description: 'Ok. Show [UI11](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/edit_question_combined.png)'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+    post:
+      operationId: R213
+      summary: 'R213: Edit user question'
+      description: 'Show a form for editing the question made by the user. Access: OWN'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: question_id
+          schema:
+            type: integer
+          required: true
+          description: 'Provide the id for the question'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                space:
+                  type: string
+              required:
+                - title
+                - body
+                - space
+      responses:
+        '302':
+          description: Redirect after editing users' question.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Edit successfully. Redirect to question page.
+                  value: '/question/{question_id}'
+                302Failure:
+                  description: Failed edit. Redirect to edit form.
+                  value: '/edit_question/{question_id}'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+  /question/{question_id}/delete:
+    delete:
+      operationId: R214
+      summary: 'R214: Delete User Question'
+      description: 'Allows a user to delete his own question. Access: OWN, ADM'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: question_id
+          schema:
+            type: integer
+          description: 'Specifies the id of the question to be deleted'
+          required: true
+      responses:
+        '302':
+          description: 'Redirect after editing users question.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Delete successful. Redirect to space page.
+                  value: '/{space_name}'
+                302Failure:
+                  description: Failed delete. Stay in question page.
+                  value: '/question/{question_id}'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+  /api/question/{question_id}/answer:
+    post:
+      operationId: R215
+      summary: 'R215: Answer the question'
+      description: 'Allows a user to answer a question. Access: USR'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: question_id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                body: 
+                  type: string
+      responses:
+        '302':
+          description: Redirect visitor.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Redirect to login form.
+                  value: /login
+        '400':
+          description: 'Bad Request'
+  /api/answer/{answer_id}/vote:
+    post:
+      operationId: R216
+      summary: 'R216: Rate a answer'
+      description: Allows a user to rate a certain answer. Access USR
+      parameters:
+        - in: path
+          name: answer_id
+          schema:
+            type: integer
+          description: 'Specifies the id of the answer to be rated'
+          required: true
+      tags:
+        - 'M02: Posts and Spaces'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                question_id:
+                  type: integer
+                vote:
+                  type: boolean
+                  enum: [true,false]
+      responses:
+        '200':
+          description: 'Answer successfully rated'
+        '302':
+          description: Redirect visitor.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Redirect to login form.
+                  value: /login
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: Page not found.
+  /api/answer/{answer_id}/delete:
+    delete:
+      operationId: R217
+      summary: 'R217: Delete User Answer'
+      description: 'Delete a users answer. Access: OWN, ADM'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: answer_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+            description: 'Question deleted successfully'
+        "400":
+          description: 'Bad Request'
+        "403":
+          description: "Forbidden access"
+  /api/answer/{answer_id}/comment:
+    get:
+      operationId: R218
+      summary: 'R218: Show comments'
+      description: 'Show comments related to a certain answer. Access:PUB'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: answer_id
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the id of the answer'
+      responses:
+        '200':
+          description: 'Ok. Show [UI10](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/question_combined.png)'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Comments not found'
+    post:
+      operationId: R219
+      summary: 'R219: Comment an answer'
+      description: 'Allows a user to comment under a specific answer. Access: USR'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: answer_id
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the id of the answer'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                body: 
+                  type: string
+      responses:
+        '302':
+          description: Redirect visitor.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Redirect to login form.
+                  value: /login
+        '400':
+          description: 'Bad Request'
+  /answer/{answer_id}/report:
+    post:
+      operationId: R220
+      summary: 'R220: Report an answer'
+      description: 'Allows a user to report an answer. Access: USR'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: answer_id
+          schema:
+            type: integer
+          description: 'Specifies the id of the answer to be reported'
+          required: true
+      responses:
+        '200':
+          description: 'Report successfully sent'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: Page not found.
+  /comment/{comment_id}/edit:
+    get:
+      operationId: R221
+      summary: 'R221: Edit a comment'
+      description: 'Page that allows a user to update his comment. Access: OWN'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: comment_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok. Show [UIXX](Nao temos)'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+    put:
+      operationId: R222
+      summary: 'R222: Edit a comment'
+      description: 'Show a form for editing the question made by the user. Access: OWN'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: comment_id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+              required:
+                - body
+      responses:
+        '302':
+          description: Redirect after editing users' comment.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Edit successfully. Redirect to question page'
+                  value: '/question/{question_id}'
+                302Failure:
+                  description: Failed edit. Redirect to edit form.
+                  value: '/comment/{comment_id}/edit'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+  /comment/{comment_id}/delete:
+    delete:
+      operationId: R223
+      summary: 'R223: Delete a users'' comment'
+      description: 'Delete a users question. Access: OWN, ADM'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: comment_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '302':
+          description: Redirect after processing deletion.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Comment successfully deleted. Redirect to question page.
+                  value: '/question/{question_id}'
+                302Failure:
+                  description: 'Failed question deletion. Stay in page'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+  /comment/{comment_id}/report:
+    post:
+      operationId: R224
+      summary: 'R224: Report a comment'
+      description: 'Allows a user to report a comment. Access: USR'
+      tags:
+        - 'M02: Posts and Spaces'
+      parameters:
+        - in: path
+          name: comment_id
+          schema:
+            type: integer
+          description: 'Specifies the id of the comment to be reported'
+          required: true
+      responses:
+        '200':
+          description: 'Report successfully sent'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Page not found'
+  /api/admin/award:
+    get:
+      operationId: R301
+      summary: 'R301: Award Users'
+      description: 'Show every user suggested to be given adminitrator status. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '200':
+          description: 'Ok. Show [UI14](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/admin_combined.png)'
+    post:
+      operationId: R302
+      summary: 'R302: Give Admin Action'
+      description: 'Gives admin status to  selected user. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '302':
+          description: 'Redirect after giving admin status'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Gave admin successfully. Redirect to user profile'
+                  value: '/users/{id}'
+                302Failure:
+                  description: 'Failed to give admin. Redirect to admin page'
+                  value: /admin/award
+        '400':
+          description: 'Bad Request'
+  /admin/award/{user_id}/top_posts:
+    get:
+      operationId: R303
+      summary: 'R303:  Users top posts'
+      description: 'Show top posts by user suggested to be given adminitrator status. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the id of the user'
+      responses:
+        '200':
+          description: 'Ok. Show [UI...](Nao temos)'
+  /api/admin/reports/users:
+    get:
+      operationId: R304
+      summary: 'R304: Reported Users'
+      description: 'Show every reposrted user. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '200':
+          description: 'Ok. Show [UI...](Nao temos)'
+    post:
+      operationId: R305
+      summary: 'R305: Ban User Action'
+      description: 'Bans selected user. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '302':
+          description: Redirect after banning.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Banned successfully. Redirect to admin page.
+                  value: /admin/reports/users
+                302Failure:
+                  description: Failed to ban. Redirect to admin page.
+                  value: /admin/reports/users
+        '400':
+          description: 'Bad Request'
+  /admin/reports/{user_id}/reported_posts:
+    get:
+      operationId: R306
+      summary: 'R306:  Users reported posts'
+      description: 'Show reported posts by reported user. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      parameters:
+        - in: path
+          name: user_id
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the id of the user'
+      responses:
+        '200':
+          description: 'Ok. Show [UI...](Nao temos)'
+  /api/admin/reports/questions:
+    get:
+      operationId: R307
+      summary: 'R307: Reported Questions'
+      description: 'Show every resported question. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '200':
+          description: 'Ok. Show [UI...](Nao temos)'
+    post:
+      operationId: R308
+      summary: 'R308: Delete Question Action'
+      description: 'Bans selected user. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '302':
+          description: Redirect after deleting.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Deleted successfully. Redirect to admin page.
+                  value: /admin/reports/questions
+                302Failure:
+                  description: Failed to delete. Redirect to admin page.
+                  value: /admin/reports/questions
+        '400':
+          description: 'Bad Request'
+  /api/admin/reports/answers:
+    get:
+      operationId: R309
+      summary: 'R309: Reported Answers'
+      description: 'Show every resported answer. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '200':
+          description: 'Ok. Show [UI...](Nao temos)'
+    post:
+      operationId: R310      
+      summary: 'R310: Delete Answer Action'
+      description: 'Bans selected user. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '302':
+          description: Redirect after deleting.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Deleted successfully. Redirect to admin page.
+                  value: /admin/reports/answers
+                302Failure:
+                  description: Failed to delete. Redirect to admin page.
+                  value: /admin/reports/answers
+        '400':
+          description: 'Bad Request'
+  /api/admin/reports/comments:
+    get:
+      operationId: R311
+      summary: 'R311: Reported Comments'
+      description: 'Show every resported comment. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '200':
+          description: 'Ok. Show [UI...](Nao temos)'
+    post:
+      operationId: R312
+      summary: 'R312: Delete Comment Action'
+      description: 'Bans selected user. Access: ADM'
+      tags:
+        - 'M03: User Administration'
+      responses:
+        '302':
+          description: Redirect after deleting.
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: Deleted successfully. Redirect to admin page.
+                  value: /admin/reports/comments
+                302Failure:
+                  description: Failed to delete. Redirect to admin page.
+                  value: /admin/reports/comments
+        '400':
+          description: 'Bad Request'
+  /about:
+    get:
+      operationId: R401
+      summary: 'R401: About Us'
+      description: 'Show information about the website and its designers. Access: PUB'
+      tags:
+        - 'M04:Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show [UI02](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/aboutus_combined.png)'
+  /faq:
+    get:
+      operationId: R402
+      summary: 'R402: FAQ'
+      description: 'Show frequently asked questions about the website. Access: PUB'
+      tags:
+        - 'M04:Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show [UI03](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/faq_combined.png)'
+  /contactus:
+    get:
+      operationId: R403
+      summary: 'R403: Contact Us'
+      description: 'Provide a form to contact the website. Access: PUB'
+      tags:
+        - 'M04:Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show [UI04](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/contactus_combined.png)'
+    post:
+      operationId: R404
+      summary: 'R404: Submit Contact Us Form Action'
+      description: 'Processes the Contact Us form submission. Access: PUB'
+      tags:
+        - 'M04:Static Pages'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                subject:
+                  type: string
+                body:
+                  type: string
+              required:
+                - email
+                - subject
+                - body
+      responses:
+        '302':
+          description: 'Redirect after processing the contact us form'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Sent Message successfully. Redirect to home page'
+                  value: /
+                302Error:
+                  description: 'Failed to send message. Redirect to Contact Us form'
+                  value: /contactus
+        '400':
+          description: 'Bad Request'
+  /:
+    get:
+      operationId: R501
+      summary: 'R501: Search Bar Form'
+      description: 'Provide search bar form. Access: PUB'
+      tags:
+        - 'M05: Search'
+      responses:
+        '200':
+          description: 'Ok. Show [UI01](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/homepage_combined.png)'
+    post:
+      operationId: R502
+      summary: 'R502: Search Action'
+      description: 'Processes the search bar form submission. Access: PUB'
+      tags:
+        - 'M05: Search'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: string
+              required:
+                - body
+      responses:
+        '302':
+          description: 'Redirect after processing the search'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful search. Redirect to search results page'
+                  value: /search/new/1
+                302Error:
+                  description: 'Failed search. Redirect to homepage'
+                  value: /home
+        '400':
+          description: 'Bad Request'
+  /search/new/{page_nr}:
+    get:
+      operationId: R503
+      summary: 'R503: Search Results ordered by Newest'
+      description: 'Provide certain search results page ordered by Newest. Access: PUB'
+      tags:
+        - 'M05: Search'
+      parameters:
+        - in: path
+          name: page_nr
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the number of the page'
+      responses:
+        '200':
+          description: 'Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/search_combined.png)'
+        '400':
+          description: 'Bad Request'
+  /search/popular/{page_nr}:
+    get:
+      operationId: R504
+      summary: 'R504: Search Results ordered by Most Popular'
+      description: 'Provide certain search results page ordered by Most Popular. Access: PUB'
+      tags:
+        - 'M05: Search'
+      parameters:
+        - in: path
+          name: page_nr
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the number of the page'
+      responses:
+        '200':
+          description: 'Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/search_combined.png)'
+        '400':
+          description: 'Bad Request'
+  /search/{space_name}/{page_nr}:
+    get:
+      operationId: R505
+      summary: 'R505: Search Results belonging to a certain space'
+      description: 'Provide certain search results page belonging to a certain space. Access: PUB'
+      tags:
+        - 'M05: Search'
+      parameters:
+        - in: path
+          name: space_name
+          schema:
+            type: string
+          required: true
+          description: 'Specifies the name of the space'
+        - in: path
+          name: page_nr
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the number of the page'
+      responses:
+        '200':
+          description: 'Ok. Show [UI13](https://git.fe.up.pt/lbaw/lbaw2021/lbaw2141/-/raw/master/Wiki%20Images/search_combined.png)'
+        '400':
+          description: 'Bad Request'

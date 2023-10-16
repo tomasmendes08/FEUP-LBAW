@@ -1,0 +1,1116 @@
+/*homepage_css*/
+
+body section.homepage-header{
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    flex-direction: column;
+}
+
+section.homepage-top{
+    height: 60vh;
+}
+
+span.report-icon:hover{
+    color: red;
+}
+span.delete-icon:hover{
+    color: red;
+}
+
+span.more-options{
+    cursor: pointer;
+}
+
+button.highlight-answer-button:hover{
+    color: #fd5d22;
+}
+
+button.edit-answer-button:hover{
+    color: #fd5d22;
+}
+
+button.edit-comment-button:hover{
+    color: #fd5d22;
+}
+
+button.remove-highlight-answer-button:hover{
+    color: red;
+}
+
+button.report-answer-button:hover{
+    color: red;
+}
+
+button.report-comment-button:hover{
+    color: red;
+}
+
+button.delete-answer-button:hover{
+    color: red;
+}
+
+button.delete-comment-button:hover{
+    color: red;
+}
+
+span.report-icon{
+    cursor: pointer;
+}
+
+span.edit-icon{
+    cursor: pointer;
+}
+
+button.delete-icon:hover{
+    color: red;
+}
+
+.question-space span.report-icon{
+    font-size: 8px;
+}
+
+.homepage-top-slogan-div span.add-question-icon{
+    font-size: 35px;
+    color: #fd5d22;
+    cursor: pointer;
+}
+
+@media(max-width:450px){
+    section.homepage-top{
+        height: 45vh;
+    }
+
+    h2.homepage-top-slogan{
+        font-size: 23px;
+    }
+
+    .homepage-top-slogan-div span.add-question-icon{
+        font-size: 30px;
+    }
+}
+
+@media(max-width:395px){
+    h2.homepage-top-slogan{
+        font-size: 21px;
+    }
+
+    .homepage-top-slogan-div span.add-question-icon{
+        font-size: 27px;
+    }
+
+    .about-us div.col-12 div.row h2{
+        font-size: 20px;
+    }
+}
+
+@media(max-width:365px){
+    section.homepage-top{
+        height: 40vh;
+    }
+
+    h2.homepage-top-slogan{
+        font-size: 19px;
+    }
+
+    .homepage-top-slogan-div span.add-question-icon{
+        font-size: 24px;
+    }
+}
+
+@media(max-width:335px){
+    section.homepage-top{
+        height: 35vh;
+    }
+
+    h2.homepage-top-slogan{
+        font-size: 18px;
+    }
+
+    .homepage-top-slogan-div span.add-question-icon{
+        font-size: 22px;
+    }
+
+    .about-us div.col-12 div.row h2{
+        font-size: 16px;
+    }
+}
+
+#science-logo{
+    width: 19%;
+}
+
+#tech-logo{
+    width: 12%;
+}
+
+#engineering-logo{
+    width: 15%;
+}
+
+#maths-logo{
+    width: 22%;
+}
+
+@media(max-width:560px){
+    #science-logo{
+        width: 25%;
+    }
+
+    #tech-logo{
+        width: 16%;
+    }
+
+    #engineering-logo{
+        width: 21%;
+    }
+
+    #maths-logo{
+        width: 28%;
+    }
+}
+
+@media(max-width:440px){
+    #science-logo{
+        width: 29%;
+    }
+
+    #tech-logo{
+        width: 20%;
+    }
+
+    #engineering-logo{
+        width: 25%;
+    }
+
+    #maths-logo{
+        width: 32%;
+    }
+}
+
+@media(max-width:370px){
+    #science-logo{
+        width: 34%;
+    }
+
+    #tech-logo{
+        width: 25%;
+    }
+
+    #engineering-logo{
+        width: 30%;
+    }
+
+    #maths-logo{
+        width: 37%;
+    }
+}
+
+@media(max-width:310px){
+    #science-logo{
+        width: 40%;
+    }
+
+    #tech-logo{
+        width: 31%;
+    }
+
+    #engineering-logo{
+        width: 36%;
+    }
+
+    #maths-logo{
+        width: 43%;
+    }
+}
+
+button.engine{
+    border: solid 2px #ebc334;
+    color: #ebc334;
+}
+
+button.engine:hover{
+    background-color: #ebc334;
+    color: white;
+    border: solid 2px #ebc334;
+}
+
+ div.card div.question-header span.material-icons{
+    font-size: 60px;
+}
+
+div.card div.question-header h4{
+    font-weight: bolder;
+}
+
+ div.card div.question-header div.question-space button{
+    width: 130px;
+}
+
+ div.card div.question-title div.votes{
+    font-size: 40px;
+}
+
+  div.votes span.left{
+    font-size: 60px;
+}
+
+  div.votes span.right{
+    font-size: 60px;
+}
+
+
+@media(max-width: 576px){
+
+     div.card div.question-title div.votes{
+        font-size: 32px;
+    }
+
+      div.votes span.left{
+        font-size: 55px;
+    }
+
+      div.votes span.right{
+        font-size: 55px;
+    }
+
+}
+
+ /* button.read-more{
+    background-color: #fd5d22;
+    border: solid 2px #fd5d22;
+    color: white;
+}
+
+button.read-more:hover{
+    color: white;
+}
+
+ button.read-more:focus{
+    box-shadow: 0 0 0 0.1em #fd5d22;
+    color: white;
+} */
+
+
+/*navbar_css*/
+
+body{
+    font-family: 'Basic';
+}
+
+.container-fluid a.navbar-brand img{
+    width: 140px;
+}
+
+.container-fluid a.navbar-brand{
+    width: 180px;
+    height: auto;
+}
+
+.container-fluid a.navbar-brand img:hover{
+    cursor: pointer;
+}
+
+
+.dropdown button.btn-secondary{
+    border:solid 2px black;
+    background-color: white;
+    color: black;
+}
+
+/* span.material-icons:hover{
+    color:#fd5d22;
+} */
+
+/* sign up */
+
+.signup-profile-header{
+
+    border-top-left-radius: 14px !important;
+    border-top-right-radius: 14px !important;
+
+
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 50vh;
+}
+
+
+
+.welcome-message{
+    /* background: linear-gradient(180deg, rgba(247,67,0,1) 0%, rgba(42,31,27,1) 0%, rgba(0,0,0,1) 100%); */
+    background: linear-gradient(180deg, #212529 0%, #212529 50%, #212529 100%);;
+    color: white;
+    border: 3px solid #f8f9fa;
+    border-right: 0px;
+
+    background-color: #f8f9fa;
+}
+
+span.error{
+    color: red;
+}
+
+.signup-form{
+    border: 3px solid #f8f9fa;
+    border-left: 0px;
+
+    background-color: #f8f9fa;
+}
+
+.signup-profile-pic img{
+    width: 220px;
+}
+
+#sign-up-submit {
+    box-shadow: 0 0 0 0.10rem #fd5d22;
+}
+
+#login_btn:focus {
+    box-shadow: 0 0 0 0.10rem #fd5d22;
+}
+
+#login_google:focus {
+    background-color: #fd5d22;
+    box-shadow: 0 0 0 0.10rem #fd5d22;
+}
+
+#login_google:hover {
+    background-color: #fd5d22;
+}
+
+#login_email:focus {
+    box-shadow: 0 0 0 0.10rem #fd5d22;
+}
+
+/* add question */
+
+.submit-question button.btn-submit-question{
+    background-color: #fd5d22;
+    color: white;
+}
+
+.submit-question button.btn-submit-question:focus {
+    box-shadow: 0 0 0 0.10rem #ff8a60;
+}
+
+/* search */
+
+#pills-search-questions-tab.active{
+    color: white;
+    background-color: #212529;
+}
+
+#pills-search-answers-tab.active{
+    color: white;
+    background-color: #212529;
+}
+
+#pills-search-comments-tab.active{
+    color: white;
+    background-color: #212529;
+}
+
+.page-item.active .page-link{
+    z-index: 3 !important;
+    color: #fd5d22 !important;
+    background-color: white !important;
+    border: 3px solid #fd5d22 !important; 
+}
+
+.page-link{
+    position: relative !important;
+    display: block !important;
+    color: black !important;
+    text-decoration: none !important;
+    background-color: #fff !important;
+    border: 2px solid #dee2e6!important;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out !important;
+}
+
+
+/* space page */
+
+/*
+.space-page-feed {
+    background-image: url("../images/science_space.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+
+}*/
+
+.upvote_question_icon{
+    cursor: pointer;
+    color: #212529;
+}
+
+.downvote_question_icon{
+    cursor: pointer;
+    color: #212529;
+}
+
+.question-title div.question-title-text:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#pills-recent-tab.active{
+    color: white;
+    background-color: #212529;
+}
+
+#pills-popular-tab.active{
+    color: white;
+    background-color: #212529;
+}
+
+#pills-upvotes-tab.active{
+    color: white;
+    background-color: #212529;
+}
+
+
+section.space-header div.container a.btn-add-question {
+    background-color: #fd5d22;
+    color: white;
+}
+
+section.space-header div.container a.btn-add-question:focus{
+    box-shadow: 0 0 0 0.1em #fd5d22;
+}
+
+/* question_page */
+
+ div.card div.answer-header span.material-icons{
+    font-size: 60px;
+}
+
+div.question-title{
+    border-top: solid 2px;
+}
+
+div.answer-container div.card{
+    border: solid 3px #212529;
+}
+
+span.edit-icon:hover{
+    color: #fd5d22;
+}
+
+.delete-answer-button:hover{
+    color: red;
+}
+
+div.answer-title{
+    border-top: 2px solid;
+}
+
+ div.card div.answer-header h4{
+    font-weight: bolder;
+}
+
+ div.card div.answer-header div.answer-space button{
+    width: 130px;
+}
+
+ div.card div.answer-title div.answer-votes{
+    font-size: 40px;
+}
+
+ div.card div.answer-title div.answer-votes span.downvote_answer_icon{
+    cursor: pointer;
+    font-size: 60px;
+}
+
+ div.card div.answer-title div.answer-votes span.upvote_answer_icon{
+    cursor: pointer;
+    font-size: 60px;
+}
+
+@media(max-width: 576px){
+
+     div.card div.answer-title div.answer-votes{
+        font-size: 32px;
+    }
+
+     div.card div.answer-title div.answer-votes span.downvote_answer_icon{
+        font-size: 55px;
+    }
+
+     div.card div.answer-title div.answer-votes span.upvote_answer_icon{
+        font-size: 55px;
+    }
+
+}
+
+.btn-add-answer{
+    color: white;
+    background-color: #fd5d22;
+}
+
+.division-question-answers div.add-answer a.btn-add-answer:focus{
+    box-shadow: 0 0 0 0.1em #fd5d22;
+}
+
+.division-question-answers div.add-answer a.btn-add-answer:active{
+    color: white;
+}
+
+#submit-your-answer button.btn-submit-answer{
+    color: white;
+    background-color: #fd5d22;
+}
+
+#submit-your-answer button.btn-submit-answer{
+    box-shadow: 0 0 0 0.1em #fd5d22;
+    color: white;
+}
+
+.answer-title div.row div.add-comment a.btn-link{
+    font-weight: bolder;
+    font-size: 20px;
+    text-decoration: underline;
+    color: #212529;
+}
+
+@media(max-width: 330px){
+
+     div.card div.answer-title div.answer-votes{
+        font-size: 26px;
+    }
+
+     div.card div.answer-title div.answer-votes span.downvote_answer_icon{
+        font-size: 45px;
+    }
+
+     div.card div.answer-title div.answer-votes span.upvote_answer_icon{
+        font-size: 45px;
+    }
+
+    .answer-title div.row div.add-comment a.btn-link{
+        font-size: 16px;
+    }
+
+}
+
+.division-question-answers div.add-answer a{
+    background-color: #fd5d22;
+    border: solid 2px #fd5d22;
+    color: white;
+}
+
+.division-question-answers div.add-answer a:hover{
+    color: #212529;
+}
+
+.comments div.comment{
+    border-top: solid 2px #212529;
+}
+
+div.comment-options span.dropdown-toggle::after {
+    display: none;
+}
+
+div.answer-options span.dropdown-toggle::after {
+    display: none;
+}
+
+form button.btn-submit-answer{
+    background-color: #fd5d22;
+    border: solid 2px #fd5d22;
+    color: white;
+}
+
+.delete-comment-button:hover{
+    color: red;
+}
+
+
+/* profile page */
+
+.user-profile-header img {
+    border-top-left-radius: 14px !important;
+    border-top-right-radius: 14px !important;
+
+    height: 60vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.user-profile-content-left img{
+    width: 350px;
+}
+
+button.btn-edit-profile{
+    color: white;
+    background-color: #fd5d22;
+}
+
+button.btn-edit-profile:hover{
+    color: white;
+}
+
+button.btn-edit-profile:focus{
+    box-shadow: 0 0 0 0.1em #fd5d22;
+}
+
+button.btn-manage-spaces{
+    color: white;
+    background-color: #fd5d22;
+}
+
+button.btn-manage-spaces:hover{
+    color: white;
+}
+
+button.btn-manage-spaces:focus{
+    box-shadow: 0 0 0 0.1em #fd5d22;
+}
+
+@media(max-width: 992px){
+    .user-profile-content-left img{
+        width: 260px;
+    }
+
+    .user-profile-header img{
+        height: 50vh;
+    }
+}
+
+@media(max-width: 768px){
+    .user-profile-content-left img{
+        width: 180px;
+    }
+    .user-profile-header img{
+        height: 40vh;
+    }
+
+}
+
+.user-profile-content-left {
+    top: -100px;
+    position: relative;
+}
+
+
+#pills-questions-tab.active{
+    color: white;
+    background-color: #212529;
+}
+
+#pills-answers-tab.active{
+    color: white;
+    background-color: #212529;
+}
+
+#pills-comments-tab.active{
+    color: white;
+    background-color: #212529;
+}
+
+@media(max-width:350px){
+    #pills-questions-tab.active{
+       background-color: #f8f9fa;
+       color: #212529;
+       border-bottom: solid 5px;
+       font-weight: bolder;
+    }
+
+    #pills-answers-tab.active{
+        background-color: #f8f9fa;
+        color: #212529;
+        border-bottom: solid 5px;
+        font-weight: bolder;
+    }
+
+    #pills-comments-tab.active{
+        background-color: #f8f9fa;
+        color: #212529;
+        border-bottom: solid 5px;
+        font-weight: bolder;
+    }
+}
+
+
+#profileMenuHeader > li > button.active, #AdminAreaNavbar > li > button.active, #AdminAreaNavbar2 > li > button.active {
+    color: white!important;
+    background-color: #212529!important;
+}
+
+#profileMenuHeader > li > button:hover, #AdminAreaNavbar > li > button:hover, #AdminAreaNavbar2 > li > button:hover {
+    color: black;
+    background-color: lightgrey;
+}
+
+
+@media (max-width: 550px) {
+    #buttonsAwardUser, #buttonsReportUser {
+        display: none!important;
+    }
+
+    #smallButtonsAwardUser, #smallButtonsReportUser {
+        display: flex!important;
+    }
+}
+
+#AdminAreaNavbar2:not(.dropdown-menu.show) {
+    display:none;
+}
+
+/*Filters*/
+#filternew::after, #filterbest::after {
+}
+
+#filternew, #filterbest, #filterspaces{
+    color: black;
+    background-color:#f8f9fa;
+}
+
+#filternew:focus, #filterbest:focus, #filterspaces:focus {
+    color: black;
+    border-color: #ff8a60;
+    background-color:#f8f9fa;
+    box-shadow: 0 0 0 .20rem #ff8a60;
+}
+
+#filtersciencespace.active, #filtertechnologypace.active, #filterengineeringpace.active, #filtermathsspace.active {
+    border-color: #f8f9fa;
+    background-color: #ff8a60;
+}
+
+#filterspaces::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill=''%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+/* edit profile */
+
+.edit-profile-header img {
+    border-top-left-radius: 14px !important;
+    border-top-right-radius: 14px !important;
+
+    opacity: 0.7;
+    height: 60vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+button.btn-update-profile{
+    color: white;
+    background-color: #fd5d22;
+}
+
+button.btn-update-profile:hover{
+    color: white;
+}
+
+button.btn-update-profile:focus{
+    box-shadow: 0 0 0 0.1em #fd5d22;
+}
+
+span.icon-edit-header{
+    position: relative;
+    top: -240px;
+    left: 640px;
+    font-size: 55px;
+}
+
+span.icon-edit-header:hover{
+    color: #fd5d22;
+}
+
+@media(max-width: 1500px){
+    span.icon-edit-header{
+        top: -220px;
+        left: 620px;
+    }
+}
+
+@media(max-width: 1400px){
+    span.icon-edit-header{
+        top: -200px;
+        left: 600px;
+    }
+}
+
+@media(max-width: 1300px){
+    span.icon-edit-header{
+        top: -180px;
+        left: 560px;
+    }
+}
+
+@media(max-width: 1200px){
+    span.icon-edit-header{
+        top: -180px;
+        left: 480px;
+    }
+}
+
+@media(max-width: 991px){
+    span.icon-edit-header{
+        top: -180px;
+        left: 350px;
+    }
+}
+
+@media(max-width: 768px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 330px;
+    }
+}
+
+@media(max-width: 730px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 310px;
+    }
+}
+
+@media(max-width: 690px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 290px;
+    }
+}
+
+@media(max-width: 650px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 270px;
+    }
+}
+
+@media(max-width: 606px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 250px;
+    }
+}
+
+@media(max-width: 570px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 230px;
+    }
+}
+
+@media(max-width: 524px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 210px;
+    }
+}
+
+@media(max-width: 486px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 190px;
+    }
+}
+
+@media(max-width: 446px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 170px;
+    }
+}
+
+@media(max-width: 408px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 150px;
+    }
+}
+
+@media(max-width: 368px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 130px;
+    }
+}
+
+@media(max-width: 322px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 110px;
+    }
+}
+
+@media(max-width: 286px){
+    span.icon-edit-header{
+        top: -140px;
+        left: 95px;
+    }
+}
+
+.edit-profile-content-left img{
+    width: 350px;
+    opacity: 0.7;
+}
+
+.edit-profile-content-left span.icon-edit-pic{
+    position: relative;
+    top: -170px;
+    font-size: 45px;
+}
+
+.edit-profile-content-left span.icon-edit-pic:hover{
+    color: #fd5d22;
+}
+
+@media(max-width: 992px){
+    .edit-profile-content-left span.icon-edit-pic{
+
+        top: -120px;
+        font-size: 35px;
+    }
+}
+
+@media(max-width: 768px){
+    .edit-profile-content-left img{
+        width: 180px;
+    }
+    .edit-profile-header img {
+        height: 30vh;
+    }
+
+    .edit-profile-content-left span.icon-edit-pic{
+
+        top: -100px;
+    }
+}
+
+.edit-profile-content-left {
+    top: -60px;
+    position: relative;
+}
+
+.edit-profile-content-right input{
+    border: solid 2px #212529;
+}
+
+.edit-profile-content-right label{
+    font-weight: bolder;
+}
+
+button.btn-ban-user{
+    background-color: red;
+    color: white;
+}
+
+button.btn-delete-question{
+    background-color: red;
+    color: white;
+}
+
+/*  Recover Password  */
+
+/*FAQ*/
+
+#faq1, #faq2, #faq3 , #faq4{
+    color: black;
+    background-color:#f8f9fa;
+}
+
+#faq1:focus, #faq2:focus, #faq3:focus, #faq4:focus {
+    color: black;
+    border-color: #ff8a60;
+    background-color:#f8f9fa;
+    box-shadow: 0 0 0 .20rem #ff8a60;
+}
+
+#faq1::after, #faq2::after, #faq3::after, #faq4::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill=''%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+/*   About Us   */
+
+@media(max-width: 3000px) {
+    #about-us-info {
+        min-height: 13em;
+    }
+}
+
+@media(max-width: 990px) {
+    #about-us-info {
+        min-height: 14em;
+    }
+}
+
+@media(max-width: 770px) {
+    #about-us-info {
+        min-height: 15em;
+    }
+}
+
+@media(max-width: 500px) {
+    #about-us-info {
+        min-height: 16em;
+    }
+}
+
+@media(max-width: 476px) {
+    #about-us-info {
+        min-height: 18em;
+    }
+}
+
+@media(max-width: 455px) {
+    #about-us-info {
+        min-height: 21em;
+    }
+}
+
+@media(max-width: 405px) {
+    #about-us-info {
+        min-height: 24em;
+    }
+}
+
+@media(max-width: 390px) {
+    #about-us-info {
+        min-height: 27em;
+    }
+}
+
+@media(max-width: 338px) {
+    #about-us-info {
+        min-height: 30em;
+    }
+}
+
+@media(max-width: 325px) {
+    #about-us-info {
+        min-height: 32em;
+    }
+}
+
+@media(max-width: 322px) {
+    #about-us-info {
+        min-height: 36em;
+    }
+}
+
+@media(max-width: 298px) {
+    #about-us-info {
+        min-height: 37em;
+    }
+}
+
+@media(max-width: 259px) {
+    #about-us-info {
+        min-height: 44em;
+    }
+}
+
+#content_recover {
+    border: solid 2px #fd5d22;
+}
+

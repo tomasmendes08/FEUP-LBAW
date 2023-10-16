@@ -1,0 +1,20 @@
+todo:
+- todos os erros no signup colocam as mesmas mensagens de erro
+- colocar nomes de tabelas em sql no plural
+
+notas do final da aula do que e necessario fazer:
+delete account
+admin
+validacoes de input (cliente e servidor)
+handle de erros de servidor
+logging - para dar handle de server errors é preciso ter o log do laravel ligado
+
+- reports (policies)
+- user reputation
+- user date created
+- cancel dos edits ainda n funcionam
+
+se o admin der highlight numa resposta, dar contorno à resposta
+
+
+- o que faz o $this->validate() (QuestionController@store)
